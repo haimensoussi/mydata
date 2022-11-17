@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "devopsdata"
 		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
 		"containerUri": {
 			"value": ""
 		},
