@@ -1,9 +1,9 @@
 {
-	"name": "pipeline1",
+	"name": "GetData",
 	"properties": {
 		"activities": [
 			{
-				"name": "Wait1",
+				"name": "Stop",
 				"type": "Wait",
 				"dependsOn": [],
 				"userProperties": [],
