@@ -1,0 +1,61 @@
+{
+	"name": "ImpDw",
+	"properties": {
+		"activities": [
+			{
+				"name": "ImDimClients",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "dimclients",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "DimEmpl",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "ImDimClients",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "GetData",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "DimProduct",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "DimEmpl",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "run data",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			}
+		],
+		"annotations": []
+	}
+}
