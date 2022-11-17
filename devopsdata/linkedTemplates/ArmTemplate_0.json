@@ -419,6 +419,81 @@
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/dataflows/dataflow1')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ImpDw')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "ImDimClients",
+						"type": "ExecutePipeline",
+						"dependsOn": [],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "dimclients",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "DimEmpl",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "ImDimClients",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "GetData",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					},
+					{
+						"name": "DimProduct",
+						"type": "ExecutePipeline",
+						"dependsOn": [
+							{
+								"activity": "DimEmpl",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"pipeline": {
+								"referenceName": "run data",
+								"type": "PipelineReference"
+							},
+							"waitOnCompletion": true,
+							"parameters": {}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {},
+					"cancelAfter": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/pipelines/dimclients')]",
+				"[concat(variables('factoryId'), '/pipelines/GetData')]",
+				"[concat(variables('factoryId'), '/pipelines/run data')]"
+			]
 		}
 	]
 }
