@@ -8,6 +8,9 @@
 		"AzureSqlDatabase1_connectionString": {
 			"value": ""
 		},
+		"linkdw_connectionString": {
+			"value": ""
+		},
 		"containerUri": {
 			"value": ""
 		},
