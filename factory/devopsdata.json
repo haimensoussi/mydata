@@ -1,0 +1,9 @@
+{
+	"name": "devopsdata",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d1e885c5-fca8-40f8-bd43-476d428fe67f",
+		"tenantId": "58e9673c-cc35-4e8d-830b-1bce4d152339"
+	}
+}
