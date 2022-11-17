@@ -1,0 +1,17 @@
+{
+	"name": "run data",
+	"properties": {
+		"activities": [
+			{
+				"name": "adf",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 5
+				}
+			}
+		],
+		"annotations": []
+	}
+}
